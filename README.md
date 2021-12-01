@@ -13,3 +13,5 @@ After it is connected, the text will show ```Normal``` or ```Warning```.
 To start recording just click the purple button, and the button will change to Red, to stop recording just click it again.
 
 To see the files you just recorded, click the orange button.
+
+Reference: https://github.com/tukuyo/AirPodsPro-Motion-Sampler
