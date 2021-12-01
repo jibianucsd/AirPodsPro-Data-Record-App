@@ -1,6 +1,6 @@
 # AirPodsPro Data Record App
 
-![test](/pic.png)
+<img src="pic.png" width=50% height=50%>
 
 The App has the functionality to record AirPods Pro data.
 
