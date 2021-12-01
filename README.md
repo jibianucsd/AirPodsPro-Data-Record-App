@@ -1,6 +1,6 @@
 # AirPodsPro Data Record App
 
-![Simulator Screen Shot - iPhone 11 - 2021-12-01 at 11 41 46](https://user-images.githubusercontent.com/72235473/144303384-2fc05cde-5e44-4033-a331-5d554d5bd2f0.png)
+![test](/pic.png)
 
 The App has the functionality to record AirPods Pro data.
 
