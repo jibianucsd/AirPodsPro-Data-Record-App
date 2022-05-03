@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -48,6 +48,8 @@
 		8E4A85E4251A37610077CDAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8E4A85E6251A37610077CDAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8EB3738A2527649700B9B3C0 /* MainPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPage.swift; sourceTree = "<group>"; };
+		C2A5352B262FF23E39CD54AC /* Pods-Neck Motion.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Neck Motion.debug.xcconfig"; path = "Target Support Files/Pods-Neck Motion/Pods-Neck Motion.debug.xcconfig"; sourceTree = "<group>"; };
+		E7AB9BA04FD757841CC99C3C /* Pods-Neck Motion.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Neck Motion.release.xcconfig"; path = "Target Support Files/Pods-Neck Motion/Pods-Neck Motion.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		070E68B2C2E5998FC9FE2F92 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C2A5352B262FF23E39CD54AC /* Pods-Neck Motion.debug.xcconfig */,
+				E7AB9BA04FD757841CC99C3C /* Pods-Neck Motion.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		632E143F26150EAE006AB7BA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +97,7 @@
 				632E144226150EAE006AB7BA /* Authentication */,
 				632E143F26150EAE006AB7BA /* Frameworks */,
 				8E4A85D6251A37600077CDAC /* Products */,
+				070E68B2C2E5998FC9FE2F92 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -130,10 +142,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8E4A85E9251A37610077CDAC /* Build configuration list for PBXNativeTarget "Neck Motion" */;
 			buildPhases = (
+				55F2BAC51746374733A6527B /* [CP] Check Pods Manifest.lock */,
 				8E4A85D1251A37600077CDAC /* Sources */,
 				8E4A85D2251A37600077CDAC /* Frameworks */,
 				8E4A85D3251A37600077CDAC /* Resources */,
 				632E144F26150EAE006AB7BA /* Embed App Extensions */,
+				A299AEAC0FDB6A6B075C63BA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -190,6 +204,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		55F2BAC51746374733A6527B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Neck Motion-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A299AEAC0FDB6A6B075C63BA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Neck Motion/Pods-Neck Motion-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Neck Motion/Pods-Neck Motion-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Neck Motion/Pods-Neck Motion-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8E4A85D1251A37600077CDAC /* Sources */ = {
@@ -343,6 +399,7 @@
 		};
 		8E4A85EA251A37610077CDAC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C2A5352B262FF23E39CD54AC /* Pods-Neck Motion.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -357,7 +414,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.3.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.biandavid.motion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -369,6 +426,7 @@
 		};
 		8E4A85EB251A37610077CDAC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E7AB9BA04FD757841CC99C3C /* Pods-Neck Motion.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -383,7 +441,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.3.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.biandavid.motion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
