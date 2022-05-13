@@ -16,6 +16,9 @@
 		8E4A85E2251A37610077CDAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E4A85E1251A37610077CDAC /* Assets.xcassets */; };
 		8E4A85E5251A37610077CDAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E4A85E3251A37610077CDAC /* LaunchScreen.storyboard */; };
 		8EB3738B2527649700B9B3C0 /* MainPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB3738A2527649700B9B3C0 /* MainPage.swift */; };
+		E53A35B7282C426C00B95AC9 /* MainSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53A35B6282C426C00B95AC9 /* MainSwiftUIView.swift */; };
+		E53A35B9282C4A7F00B95AC9 /* LineGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53A35B8282C4A7F00B95AC9 /* LineGraph.swift */; };
+		E578950D282E422B007CBB48 /* MotionDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E578950C282E422B007CBB48 /* MotionDetector.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -48,6 +51,9 @@
 		8E4A85E4251A37610077CDAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8E4A85E6251A37610077CDAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8EB3738A2527649700B9B3C0 /* MainPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPage.swift; sourceTree = "<group>"; };
+		E53A35B6282C426C00B95AC9 /* MainSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSwiftUIView.swift; sourceTree = "<group>"; };
+		E53A35B8282C4A7F00B95AC9 /* LineGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineGraph.swift; sourceTree = "<group>"; };
+		E578950C282E422B007CBB48 /* MotionDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionDetector.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +115,9 @@
 				8E4A85E1251A37610077CDAC /* Assets.xcassets */,
 				8E4A85E3251A37610077CDAC /* LaunchScreen.storyboard */,
 				8E4A85E6251A37610077CDAC /* Info.plist */,
+				E53A35B6282C426C00B95AC9 /* MainSwiftUIView.swift */,
+				E578950C282E422B007CBB48 /* MotionDetector.swift */,
+				E53A35B8282C4A7F00B95AC9 /* LineGraph.swift */,
 			);
 			path = "Neck Motion";
 			sourceTree = "<group>";
@@ -200,6 +209,9 @@
 				8E4A85D9251A37600077CDAC /* AppDelegate.swift in Sources */,
 				8E4A7F90255AFD9F00CC0C2D /* CSVWriter.swift in Sources */,
 				8E4A85DB251A37600077CDAC /* SceneDelegate.swift in Sources */,
+				E53A35B9282C4A7F00B95AC9 /* LineGraph.swift in Sources */,
+				E53A35B7282C426C00B95AC9 /* MainSwiftUIView.swift in Sources */,
+				E578950D282E422B007CBB48 /* MotionDetector.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,14 +363,14 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = F6TZHZ4N53;
+				DEVELOPMENT_TEAM = 899K89S688;
 				INFOPLIST_FILE = "Neck Motion/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.3.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.biandavid.motion;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dziper.motion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTS_MACCATALYST = NO;
@@ -377,14 +389,14 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = F6TZHZ4N53;
+				DEVELOPMENT_TEAM = 899K89S688;
 				INFOPLIST_FILE = "Neck Motion/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.3.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.biandavid.motion;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dziper.motion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTS_MACCATALYST = NO;

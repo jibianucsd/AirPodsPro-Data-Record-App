@@ -1,4 +1,5 @@
 import UIKit
+import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -8,7 +9,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         self.window = window
-        window.rootViewController = UINavigationController(rootViewController: MainPage())
+//        window.rootViewController = UINavigationController(rootViewController: MainPage())
+        
+        @StateObject var detector = MotionDetector(updateInterval: 0.01).started()
+
+        window.rootViewController = UIHostingController(rootView:
+            MainSwiftUIView()
+            .environmentObject(detector)
+        )
         window.makeKeyAndVisible()
     }
 
