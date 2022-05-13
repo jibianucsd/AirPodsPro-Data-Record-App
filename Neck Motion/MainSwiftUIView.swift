@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreMotion
+import SwiftUICharts
 
 struct MainSwiftUIView: View {
     @EnvironmentObject private var detector: MotionDetector
@@ -38,12 +39,14 @@ struct MainSwiftUIView: View {
                     .font(.title)
                 
                 Spacer()
-                LineGraph(data: data, maxData: maxData, minValue: graphMinValue, maxValue: graphMaxValue)
-                    .clipped()
-                    .background(Color.accentColor.opacity(0.1))
-                    .cornerRadius(20)
+//                LineGraph(data: data, maxData: maxData, minValue: graphMinValue, maxValue: graphMaxValue)
+//                    .clipped()
+//                    .background(Color.accentColor.opacity(0.1))
+//                    .cornerRadius(20)
+//                    .padding()
+//                    .aspectRatio(1, contentMode: .fit)
+                LineView(data: data, title: "Title", legend: "Legendary")
                     .padding()
-                    .aspectRatio(1, contentMode: .fit)
                 Spacer()
                 HStack {
                     Button {
