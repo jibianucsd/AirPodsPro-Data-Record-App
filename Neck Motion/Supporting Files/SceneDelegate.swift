@@ -14,8 +14,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         @StateObject var detector = MotionDetector(updateInterval: 0.01).started()
 
         window.rootViewController = UIHostingController(rootView:
-            MainSwiftUIView()
-            .environmentObject(detector)
+            MainAppView()
+                .environmentObject(detector)
         )
         window.makeKeyAndVisible()
     }
