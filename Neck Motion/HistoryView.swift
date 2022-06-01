@@ -8,16 +8,17 @@
 import SwiftUI
 
 struct HistoryView: View {
+    let sessions: [Session]
     var body: some View {
         NavigationView {
             List {
                 NavigationLink(
-                    destination: DetailView(session: Session(data: [1,2,5,6,0,10], date: Date() as NSDate, type: "Surgery"))) {
-                    HistoryListItem(session: Session(data: [1,2,5,6,0,10], date: Date() as NSDate, type: "Surgery"))
+                    destination: DetailView(session: sessions[0])) {
+                    HistoryListItem(session: sessions[0])
                 }
                 NavigationLink(
-                    destination: DetailView(session: Session(data: [1,2,5,6,0,10], date: Date() as NSDate, type: "Surgery"))) {
-                    HistoryListItem(session: Session(data: [1,2,5,6,0,10], date: Date() as NSDate, type: "Surgery"))
+                    destination: DetailView(session: sessions[1])) {
+                    HistoryListItem(session: sessions[1])
                 }
                 
             }
@@ -28,6 +29,9 @@ struct HistoryView: View {
 
 struct HistoryView_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryView()
+        let session1 = generateRandomSession()
+        let session2 = generateRandomSession()
+        let sessions = [session1, session2]
+        HistoryView(sessions: sessions)
     }
 }

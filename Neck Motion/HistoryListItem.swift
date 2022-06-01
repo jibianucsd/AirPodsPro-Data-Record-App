@@ -20,7 +20,7 @@ struct HistoryListItem: View {
                     Spacer()
                 }
                 HStack {
-                    Text(session.type ?? "Surgery")
+                    Text(session.type)
                     Spacer()
                 }
                 
@@ -32,6 +32,6 @@ struct HistoryListItem: View {
 
 struct HistoryListItem_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryListItem(session: Session(data: [1,2,5,6,0,10], date: Date() as NSDate, type: "Surgery"))
+        HistoryListItem(session: generateRandomSession())
     }
 }

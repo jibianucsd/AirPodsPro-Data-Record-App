@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainAppView: View {
     @EnvironmentObject private var detector: MotionDetector
+    let sessions: [Session]
     var body: some View {
         TabView {
             RecordSessionView()
@@ -23,7 +24,7 @@ struct MainAppView: View {
 //                .environmentObject(detector)
                 
             
-            HistoryView()
+            HistoryView(sessions: sessions)
                 .tabItem {
                     VStack {
                         Image(systemName: "chart.xyaxis.line")
@@ -38,9 +39,13 @@ struct MainAppView: View {
 
 struct MainAppView_Previews: PreviewProvider {
     @StateObject static private var detector = MotionDetector(updateInterval: 0.01).started()
-
+    
     static var previews: some View {
-        MainAppView()
+        let session1 = generateRandomSession()
+        let session2 = generateRandomSession()
+        let sessions = [session1, session2]
+        
+        MainAppView(sessions: sessions)
             .environmentObject(detector)
             .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
     }

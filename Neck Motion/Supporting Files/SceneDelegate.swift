@@ -12,9 +12,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        window.rootViewController = UINavigationController(rootViewController: MainPage())
         
         @StateObject var detector = MotionDetector(updateInterval: 0.01).started()
-
+        
+        let session1 = generateRandomSession()
+        let session2 = generateRandomSession()
+        let sessions = [session1, session2]
+        
         window.rootViewController = UIHostingController(rootView:
-            MainAppView()
+            MainAppView(sessions: sessions)
                 .environmentObject(detector)
         )
         window.makeKeyAndVisible()

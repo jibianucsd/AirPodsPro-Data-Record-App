@@ -15,7 +15,7 @@ struct RecordSessionView: View {
     @State var recording = false
     @State var sessionType: String = "Surgery"
     
-    @State var session = Session(data: [], date: Date() as NSDate, type: nil)
+    @State var session = Session(motion: MotionData(), date: Date(), type: "Surgery")
     
     @State private var displayData = [Double]()
     let maxData = 800
@@ -101,7 +101,9 @@ struct RecordSessionView: View {
                         displayData = Array(displayData.dropFirst())
                     }
                     
-                    session.data.append(-detector.pitch)
+                    session.motion.pitch.append(-detector.pitch)
+                    session.motion.roll.append(detector.roll)
+                    session.motion.yaw.append(detector.zAcceleration)
                 }
             }
         }
@@ -127,7 +129,7 @@ struct RecordSessionView: View {
         }
         detector.stop()
         displayData.removeAll()
-        session.data.removeAll()
+        session.motion = MotionData()
     }
 
     func saveRecording() {

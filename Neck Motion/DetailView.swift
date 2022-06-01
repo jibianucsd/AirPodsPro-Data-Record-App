@@ -38,12 +38,6 @@ struct DetailView: View {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        var data = MotionData(
-            timestamps: [1, 2, 3, 4, 5, 6],
-            pitch: [1,2,5,6,0,10],
-            roll: [1,2,20,6,0,10],
-            yaw: [1,2,50,6,20,10]
-        )
-        DetailView(session: Session(motion: data, date: Date(), type: "Surgery"))
+        DetailView(session: generateRandomSession())
     }
 }
