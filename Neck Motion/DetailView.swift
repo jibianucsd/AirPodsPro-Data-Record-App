@@ -19,14 +19,14 @@ struct DetailView: View {
                 }
                 HStack {
                     
-                    Text(session.type ?? "Session")
+                    Text(session.type)
                         .font(.title)
                     Spacer()
                 }
                 
                 ScrollView {
                     VStack {
-                        LineView(data: session.data, title: "Pitch")
+                        LineView(data: session.motion.pitch, title: "Pitch")
                         
 //                        PieChartView(data: [0.7, 0.2, 0.1], title: "Proportion of Good Posture")
                     }
@@ -38,6 +38,12 @@ struct DetailView: View {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(session: Session(data: [1,2,5,6,0,10], date: Date() as NSDate, type: "Surgery"))
+        var data = MotionData(
+            timestamps: [1, 2, 3, 4, 5, 6],
+            pitch: [1,2,5,6,0,10],
+            roll: [1,2,20,6,0,10],
+            yaw: [1,2,50,6,20,10]
+        )
+        DetailView(session: Session(motion: data, date: Date(), type: "Surgery"))
     }
 }

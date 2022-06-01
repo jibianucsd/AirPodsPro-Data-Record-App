@@ -6,9 +6,22 @@
 //
 
 import Foundation
+import CoreMotion
 
-struct Session {
-    var data: [Double]
-    let date: NSDate
-    var type: String?
+struct Session: Codable {
+    var motion: MotionData
+//    var phoneMotion: [MotionPoint]
+    let date: Date
+    var type: String
+}
+
+struct MotionData: Codable {
+    var timestamps: [Int64]
+    var pitch: [Double]
+    var roll: [Double]
+    var yaw: [Double]
+}
+
+func generateRandomSession() {
+    
 }
