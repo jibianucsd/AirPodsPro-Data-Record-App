@@ -10,7 +10,7 @@ import SwiftUICharts
 
 struct RecordSessionView: View {
     @EnvironmentObject private var detector: MotionDetector
-    
+    @EnvironmentObject var model: Model
     
     @State var recording = false
     @State var sessionType: String = "Surgery"
@@ -133,7 +133,10 @@ struct RecordSessionView: View {
     }
 
     func saveRecording() {
-        
+        pauseRecording()
+        model.sessions.append(session)
+        session = Session()
+        displayData.removeAll()
     }
 }
 
@@ -141,10 +144,23 @@ struct RecordSessionView: View {
 
 struct RecordSessionView_Previews: PreviewProvider {
     @StateObject static private var detector = MotionDetector(updateInterval: 0.01)
-
+    @StateObject static var model = Model()
+    
     static var previews: some View {
         RecordSessionView()
             .environmentObject(detector)
+        
+            .environmentObject({ () -> Model in
+                            let model = Model()
+                
+                            let session1 = generateRandomSession()
+                            let session2 = generateRandomSession()
+                            model.sessions.append(session1)
+                            model.sessions.append(session2)
+                
+                            return model
+                        }() )
+        
             .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
         
     }

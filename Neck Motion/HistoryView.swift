@@ -8,19 +8,14 @@
 import SwiftUI
 
 struct HistoryView: View {
-    let sessions: [Session]
+    @EnvironmentObject var model: Model
     var body: some View {
         NavigationView {
-            List {
+            List (model.sessions) { session in
                 NavigationLink(
-                    destination: DetailView(session: sessions[0])) {
-                    HistoryListItem(session: sessions[0])
+                    destination: DetailView(session: session)) {
+                    HistoryListItem(session: session)
                 }
-                NavigationLink(
-                    destination: DetailView(session: sessions[1])) {
-                    HistoryListItem(session: sessions[1])
-                }
-                
             }
             .navigationTitle("Past Sessions")
         }
@@ -29,9 +24,16 @@ struct HistoryView: View {
 
 struct HistoryView_Previews: PreviewProvider {
     static var previews: some View {
-        let session1 = generateRandomSession()
-        let session2 = generateRandomSession()
-        let sessions = [session1, session2]
-        HistoryView(sessions: sessions)
+        HistoryView()
+            .environmentObject({ () -> Model in
+                            let model = Model()
+                
+                            let session1 = generateRandomSession()
+                            let session2 = generateRandomSession()
+                            model.sessions.append(session1)
+                            model.sessions.append(session2)
+                
+                            return model
+                        }() )
     }
 }

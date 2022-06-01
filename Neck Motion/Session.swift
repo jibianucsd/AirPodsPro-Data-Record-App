@@ -9,11 +9,16 @@ import Foundation
 import CoreMotion
 import SwiftUI
 
-struct Session: Codable {
-    var motion: MotionData
+class Model: Codable, ObservableObject {
+    var sessions: [Session] = []
+}
+
+struct Session: Codable, Identifiable {
+    let id = UUID()
+    var motion: MotionData = MotionData()
 //    var phoneMotion: [MotionPoint]
-    let date: Date
-    var type: String
+    var date: Date = Date()
+    var type: String = "Session"
 }
 
 struct MotionData: Codable {

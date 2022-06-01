@@ -13,13 +13,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         @StateObject var detector = MotionDetector(updateInterval: 0.01).started()
         
-        let session1 = generateRandomSession()
-        let session2 = generateRandomSession()
-        let sessions = [session1, session2]
-        
         window.rootViewController = UIHostingController(rootView:
-            MainAppView(sessions: sessions)
+            MainAppView()
                 .environmentObject(detector)
+                .environmentObject({ () -> Model in
+                                let model = Model()
+                                
+                                // @TODO load model from user.defaults ?
+                                let session1 = generateRandomSession()
+                                let session2 = generateRandomSession()
+                                model.sessions.append(session1)
+                                model.sessions.append(session2)
+                    
+                                return model
+                            }() )
         )
         window.makeKeyAndVisible()
     }

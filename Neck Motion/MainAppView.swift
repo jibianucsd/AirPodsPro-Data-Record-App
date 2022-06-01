@@ -9,7 +9,8 @@ import SwiftUI
 
 struct MainAppView: View {
     @EnvironmentObject private var detector: MotionDetector
-    let sessions: [Session]
+    @EnvironmentObject var model: Model
+
     var body: some View {
         TabView {
             RecordSessionView()
@@ -18,13 +19,12 @@ struct MainAppView: View {
                         Image(systemName: "record.circle")
                         Text("Record Session")
                     }
-                    
                 }
 //            MainSwiftUIView()
 //                .environmentObject(detector)
                 
             
-            HistoryView(sessions: sessions)
+            HistoryView()
                 .tabItem {
                     VStack {
                         Image(systemName: "chart.xyaxis.line")
@@ -45,8 +45,18 @@ struct MainAppView_Previews: PreviewProvider {
         let session2 = generateRandomSession()
         let sessions = [session1, session2]
         
-        MainAppView(sessions: sessions)
+        MainAppView()
             .environmentObject(detector)
+            .environmentObject({ () -> Model in
+                            let model = Model()
+                
+                            let session1 = generateRandomSession()
+                            let session2 = generateRandomSession()
+                            model.sessions.append(session1)
+                            model.sessions.append(session2)
+                
+                            return model
+                        }() )
             .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
     }
 }
