@@ -15,6 +15,7 @@ struct DetailView: View {
     
     var body: some View {
             VStack {
+                // Display Session Information
                 HStack{
                     Text(session.date as Date, style: .date)
                         .font(.headline)
@@ -28,7 +29,7 @@ struct DetailView: View {
                         .font(.title)
                     Spacer()
                 }
-                
+                // Display Session Data
                 ScrollView {
                     VStack {
                         LineChartView(data: sample(list: session.motion.attitudePitch, n: sampleSize), title: "Pitch", form: ChartForm.large, dropShadow: false)
@@ -39,6 +40,7 @@ struct DetailView: View {
                 }
             }
             .toolbar {
+                // Add share button for exporting CSV
                 Button {
                     writeSession()
                 } label: {
@@ -52,6 +54,7 @@ struct DetailView: View {
         writer.writeSession(session: session)
     }
     
+    // Sample data when displaying (otherwise graph super laggy)
     func sample(list: [Double], n: Int) -> [Double] {
         let interval = list.count / n
         var out: [Double] = []

@@ -11,7 +11,9 @@ struct HistoryView: View {
     @EnvironmentObject var model: Model
     var body: some View {
         NavigationView {
-            List (model.sessions) { session in
+            // Scrollable session buttons, linking to DetailViews of each session
+            
+            List (model.sessions.reversed()) { session in
                 NavigationLink(
                     destination: DetailView(session: session)) {
                     HistoryListItem(session: session)

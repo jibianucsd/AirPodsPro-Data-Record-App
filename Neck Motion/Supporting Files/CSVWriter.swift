@@ -48,13 +48,13 @@ class CSVWriter {
         file.write(text.data(using: .utf8)!)
     }
     
-    func writeMotionData(motion: MotionData) {
+    private func writeMotionData(motion: MotionData) {
         for i in 0..<motion.timestamps.count {
             writeLine(motion: motion, index: i)
         }
     }
     
-    func writeLine(motion: MotionData, index: Int) {
+    private func writeLine(motion: MotionData, index: Int) {
         guard let file = self.file else { return }
         var text = """
                 \(motion.timestamps[index]),\

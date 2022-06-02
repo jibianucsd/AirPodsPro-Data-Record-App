@@ -9,7 +9,9 @@ import SwiftUI
 
 struct MainAppView: View {
     @EnvironmentObject private var detector: MotionDetector
+    
     @EnvironmentObject var model: Model
+    // Model keeps track of data, use EnvironmentObject to easily pass it between views
 
     var body: some View {
         TabView {
@@ -45,6 +47,7 @@ struct MainAppView_Previews: PreviewProvider {
         MainAppView()
             .environmentObject(detector)
             .environmentObject({ () -> Model in
+                    // Fill model with example data
                             let model = Model()
                 
                             let session1 = generateRandomSession()

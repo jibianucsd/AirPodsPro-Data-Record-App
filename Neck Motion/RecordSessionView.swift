@@ -16,6 +16,7 @@ struct RecordSessionView: View {
     @State var sessionType: String = "Surgery"
     
     @State var session = Session(motion: MotionData(), date: Date(), type: "Surgery")
+    // @State for live graph updates
     
     @State private var displayData = [Double]()
     let maxData = 800
@@ -23,6 +24,7 @@ struct RecordSessionView: View {
     var body: some View {
         NavigationView {
             VStack {
+                // Display header data, session type text feild
                 VStack {
                     HStack{
                         Text(Date(), style: .date)
@@ -50,7 +52,7 @@ struct RecordSessionView: View {
                 
                 VStack {
                     ZStack {
-                        
+                        // Display Big play button, or Big chart
                         Button(action: startRecording) {
                             Image(systemName: "play.circle")
                                 .resizable()
@@ -70,7 +72,7 @@ struct RecordSessionView: View {
 
                     }
                     
-                                    
+                    // Display small buttons
                     HStack {
                         Button(action: pauseRecording) {
                             Image(systemName: "pause.circle")
@@ -78,7 +80,7 @@ struct RecordSessionView: View {
                                 .padding()
                         }
                         Button(action: saveRecording) {
-                            Image(systemName: "doc.circle")
+                            Image(systemName: "checkmark.circle")
                                 .font(.title)
                                 .padding()
                         }
@@ -95,8 +97,10 @@ struct RecordSessionView: View {
             }
             .navigationTitle("New Session")
             .onAppear {
+                // Update Session motion when we get updates from MotionDetector
+                // This will update the LineChart because session is @State
                 detector.onUpdate = { motion in
-                    displayData.append(-detector.pitch)
+                    displayData.append(motion.attitude.pitch)
                     if displayData.count > maxData {
                         displayData = Array(displayData.dropFirst())
                     }
@@ -154,6 +158,7 @@ struct RecordSessionView: View {
     func saveRecording() {
         pauseRecording()
         model.addSession(session: session)
+        // Save session to model, clear it
         session = Session()
         displayData.removeAll()
     }

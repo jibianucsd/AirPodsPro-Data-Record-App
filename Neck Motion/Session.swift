@@ -9,6 +9,8 @@ import Foundation
 import CoreMotion
 import SwiftUI
 
+// Contains past sessions, and any other data that we will need to save in the future
+// Saved to UserDefaults so that when app gets reloaded, load data
 class Model: ObservableObject {
     @Published var sessions: [Session] = []
     
@@ -35,14 +37,17 @@ class Model: ObservableObject {
     }
 }
 
+// Keeps track of motion data and metadata for one recording
 struct Session: Codable, Identifiable {
     var id = UUID()
     var motion: MotionData = MotionData()
-//    var phoneMotion: [MotionPoint]
+//    var phoneMotion: [MotionPoint]   // Add phone motion vs airpods motion?
     var date: Date = Date()
     var type: String = "Session"
 }
 
+// Stores all motion data and timestamps for a recording
+// Is there a cleaner way to do this..? Not sure
 struct MotionData: Codable {
     var timestamps: [Int64] = []
     
@@ -68,8 +73,12 @@ struct MotionData: Codable {
     var rotationZ: [Double] = []
 }
 
+
+// Helper function for generating random data
 func generateRandomSession() -> Session {
     let length = 100
+    let minData = -5.0
+    let maxData = 5.0
     
     var timestamps: [Int64] = []
     
@@ -97,26 +106,26 @@ func generateRandomSession() -> Session {
     for i in 0...length {
         timestamps.append(Int64(i))
         
-        quaternionX.append(Double.random(in: -5.0..<5.0))
-        quaternionY.append(Double.random(in: -5.0..<5.0))
-        quaternionZ.append(Double.random(in: -5.0..<5.0))
-        quaternionW.append(Double.random(in: -5.0..<5.0))
+        quaternionX.append(Double.random(in: minData..<maxData))
+        quaternionY.append(Double.random(in: minData..<maxData))
+        quaternionZ.append(Double.random(in: minData..<maxData))
+        quaternionW.append(Double.random(in: minData..<maxData))
         
-        attitudePitch.append(Double.random(in: -5.0..<5.0))
-        attitudeRoll.append(Double.random(in: -5.0..<5.0))
-        attitudeYaw.append(Double.random(in: -5.0..<5.0))
+        attitudePitch.append(Double.random(in: minData..<maxData))
+        attitudeRoll.append(Double.random(in: minData..<maxData))
+        attitudeYaw.append(Double.random(in: minData..<maxData))
         
-        gravAccelX.append(Double.random(in: -5.0..<5.0))
-        gravAccelY.append(Double.random(in: -5.0..<5.0))
-        gravAccelZ.append(Double.random(in: -5.0..<5.0))
+        gravAccelX.append(Double.random(in: minData..<maxData))
+        gravAccelY.append(Double.random(in: minData..<maxData))
+        gravAccelZ.append(Double.random(in: minData..<maxData))
         
-        accelX.append(Double.random(in: -5.0..<5.0))
-        accelY.append(Double.random(in: -5.0..<5.0))
-        accelZ.append(Double.random(in: -5.0..<5.0))
+        accelX.append(Double.random(in: minData..<maxData))
+        accelY.append(Double.random(in: minData..<maxData))
+        accelZ.append(Double.random(in: minData..<maxData))
         
-        rotationX.append(Double.random(in: -5.0..<5.0))
-        rotationY.append(Double.random(in: -5.0..<5.0))
-        rotationZ.append(Double.random(in: -5.0..<5.0))
+        rotationX.append(Double.random(in: minData..<maxData))
+        rotationY.append(Double.random(in: minData..<maxData))
+        rotationZ.append(Double.random(in: minData..<maxData))
     }
     let data = MotionData(
         timestamps: timestamps,
