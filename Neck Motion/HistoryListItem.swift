@@ -17,6 +17,8 @@ struct HistoryListItem: View {
                 HStack {
                     Text(session.date as Date, style: .date)
                         .font(.headline)
+                    Text(session.date as Date, style: .time)
+                        .font(.subheadline)
                     Spacer()
                 }
                 HStack {

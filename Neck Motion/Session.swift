@@ -11,10 +11,32 @@ import SwiftUI
 
 class Model: ObservableObject {
     @Published var sessions: [Session] = []
+    
+    init() {
+        if let data = UserDefaults.standard.data(forKey: "SavedModel") {
+            if let decoded = try? JSONDecoder().decode([Session].self, from: data) {
+                sessions = decoded
+                return
+            }
+        }
+
+        sessions = []
+    }
+    
+    func save() {
+        if let encoded = try? JSONEncoder().encode(sessions) {
+            UserDefaults.standard.set(encoded, forKey: "SavedModel")
+        }
+    }
+    
+    func addSession(session: Session) {
+        sessions.append(session)
+        save()
+    }
 }
 
 struct Session: Codable, Identifiable {
-    let id = UUID()
+    var id = UUID()
     var motion: MotionData = MotionData()
 //    var phoneMotion: [MotionPoint]
     var date: Date = Date()
@@ -96,7 +118,7 @@ func generateRandomSession() -> Session {
         rotationY.append(Double.random(in: -5.0..<5.0))
         rotationZ.append(Double.random(in: -5.0..<5.0))
     }
-    var data = MotionData(
+    let data = MotionData(
         timestamps: timestamps,
         quaternionX:quaternionX,
         quaternionY:quaternionY,
@@ -120,6 +142,6 @@ func generateRandomSession() -> Session {
 //    let day = Int.random(in: 1...28)
     let date = Date(timeIntervalSinceNow: TimeInterval(CGFloat.random(in: -10000.0...10000)))
     
-    var out = Session(motion: data, date: date, type: "Surgery")
+    let out = Session(motion: data, date: date, type: "Surgery")
     return out
 }

@@ -42,10 +42,6 @@ struct MainAppView_Previews: PreviewProvider {
     @StateObject static private var detector = MotionDetector(updateInterval: 0.01).started()
     
     static var previews: some View {
-        let session1 = generateRandomSession()
-        let session2 = generateRandomSession()
-        let sessions = [session1, session2]
-        
         MainAppView()
             .environmentObject(detector)
             .environmentObject({ () -> Model in

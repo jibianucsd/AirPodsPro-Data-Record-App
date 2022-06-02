@@ -153,7 +153,7 @@ struct RecordSessionView: View {
 
     func saveRecording() {
         pauseRecording()
-        model.sessions.append(session)
+        model.addSession(session: session)
         session = Session()
         displayData.removeAll()
     }

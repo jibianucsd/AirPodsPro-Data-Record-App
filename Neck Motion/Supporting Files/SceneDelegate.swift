@@ -16,17 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.rootViewController = UIHostingController(rootView:
             MainAppView()
                 .environmentObject(detector)
-                .environmentObject({ () -> Model in
-                                let model = Model()
-                                
-                                // @TODO load model from user.defaults ?
-                                let session1 = generateRandomSession()
-                                let session2 = generateRandomSession()
-                                model.sessions.append(session1)
-                                model.sessions.append(session2)
-                    
-                                return model
-                            }() )
+                .environmentObject(Model())
         )
         window.makeKeyAndVisible()
     }
