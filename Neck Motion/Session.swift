@@ -9,8 +9,8 @@ import Foundation
 import CoreMotion
 import SwiftUI
 
-class Model: Codable, ObservableObject {
-    var sessions: [Session] = []
+class Model: ObservableObject {
+    @Published var sessions: [Session] = []
 }
 
 struct Session: Codable, Identifiable {

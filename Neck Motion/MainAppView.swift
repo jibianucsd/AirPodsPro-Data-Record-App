@@ -20,6 +20,7 @@ struct MainAppView: View {
                         Text("Record Session")
                     }
                 }
+                .environmentObject(model)
 //            MainSwiftUIView()
 //                .environmentObject(detector)
                 
@@ -30,8 +31,8 @@ struct MainAppView: View {
                         Image(systemName: "chart.xyaxis.line")
                         Text("Session History")
                     }
-                    
                 }
+                .environmentObject(model)
         }
     }
     

@@ -10,6 +10,8 @@ import SwiftUICharts
 
 struct DetailView: View {
     let session: Session
+    let sampleSize = 50
+    
     var body: some View {
             VStack {
                 HStack{
@@ -26,13 +28,24 @@ struct DetailView: View {
                 
                 ScrollView {
                     VStack {
-                        LineView(data: session.motion.pitch, title: "Pitch")
-                        
+                        LineChartView(data: sample(list: session.motion.pitch, n: sampleSize), title: "Pitch", form: ChartForm.extraLarge, dropShadow: false)
+                        LineChartView(data: sample(list: session.motion.roll, n: sampleSize), title: "Roll", form: ChartForm.extraLarge, dropShadow: false)
+                        LineChartView(data: sample(list: session.motion.yaw, n: sampleSize), title: "Acceleration", form: ChartForm.extraLarge, dropShadow: false)
 //                        PieChartView(data: [0.7, 0.2, 0.1], title: "Proportion of Good Posture")
                     }
                 }
             }
             .padding()
+    }
+    
+    func sample(list: [Double], n: Int) -> [Double] {
+        let interval = list.count / n
+        var out: [Double] = []
+        
+        for i in 0..<n {
+            out.append(list[i*interval])
+        }
+        return out
     }
 }
 

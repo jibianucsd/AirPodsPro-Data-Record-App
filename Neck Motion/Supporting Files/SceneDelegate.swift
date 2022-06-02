@@ -11,7 +11,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = window
 //        window.rootViewController = UINavigationController(rootViewController: MainPage())
         
-        @StateObject var detector = MotionDetector(updateInterval: 0.01).started()
+        @StateObject var detector = MotionDetector(updateInterval: 0.01)
         
         window.rootViewController = UIHostingController(rootView:
             MainAppView()
