@@ -23,29 +23,97 @@ struct Session: Codable, Identifiable {
 
 struct MotionData: Codable {
     var timestamps: [Int64] = []
-    var pitch: [Double] = []
-    var roll: [Double] = []
-    var yaw: [Double] = []
+    
+    var quaternionX: [Double] = []
+    var quaternionY: [Double] = []
+    var quaternionZ: [Double] = []
+    var quaternionW: [Double] = []
+    
+    var attitudePitch: [Double] = []
+    var attitudeRoll: [Double] = []
+    var attitudeYaw: [Double] = []
+    
+    var gravAccelX: [Double] = []
+    var gravAccelY: [Double] = []
+    var gravAccelZ: [Double] = []
+    
+    var accelX: [Double] = []
+    var accelY: [Double] = []
+    var accelZ: [Double] = []
+    
+    var rotationX: [Double] = []
+    var rotationY: [Double] = []
+    var rotationZ: [Double] = []
 }
 
 func generateRandomSession() -> Session {
     let length = 100
+    
     var timestamps: [Int64] = []
-    var pitch: [Double] = []
-    var roll: [Double] = []
-    var yaw: [Double] = []
+    
+    var quaternionX: [Double] = []
+    var quaternionY: [Double] = []
+    var quaternionZ: [Double] = []
+    var quaternionW: [Double] = []
+    
+    var attitudePitch: [Double] = []
+    var attitudeRoll: [Double] = []
+    var attitudeYaw: [Double] = []
+    
+    var gravAccelX: [Double] = []
+    var gravAccelY: [Double] = []
+    var gravAccelZ: [Double] = []
+    
+    var accelX: [Double] = []
+    var accelY: [Double] = []
+    var accelZ: [Double] = []
+    
+    var rotationX: [Double] = []
+    var rotationY: [Double] = []
+    var rotationZ: [Double] = []
     
     for i in 0...length {
         timestamps.append(Int64(i))
-        pitch.append(Double.random(in: -5.0..<5.0))
-        roll.append(Double.random(in: -5.0..<5.0))
-        yaw.append(Double.random(in: -5.0..<5.0))
+        
+        quaternionX.append(Double.random(in: -5.0..<5.0))
+        quaternionY.append(Double.random(in: -5.0..<5.0))
+        quaternionZ.append(Double.random(in: -5.0..<5.0))
+        quaternionW.append(Double.random(in: -5.0..<5.0))
+        
+        attitudePitch.append(Double.random(in: -5.0..<5.0))
+        attitudeRoll.append(Double.random(in: -5.0..<5.0))
+        attitudeYaw.append(Double.random(in: -5.0..<5.0))
+        
+        gravAccelX.append(Double.random(in: -5.0..<5.0))
+        gravAccelY.append(Double.random(in: -5.0..<5.0))
+        gravAccelZ.append(Double.random(in: -5.0..<5.0))
+        
+        accelX.append(Double.random(in: -5.0..<5.0))
+        accelY.append(Double.random(in: -5.0..<5.0))
+        accelZ.append(Double.random(in: -5.0..<5.0))
+        
+        rotationX.append(Double.random(in: -5.0..<5.0))
+        rotationY.append(Double.random(in: -5.0..<5.0))
+        rotationZ.append(Double.random(in: -5.0..<5.0))
     }
     var data = MotionData(
         timestamps: timestamps,
-        pitch: pitch,
-        roll: roll,
-        yaw: yaw
+        quaternionX:quaternionX,
+        quaternionY:quaternionY,
+        quaternionZ:quaternionZ,
+        quaternionW:quaternionW,
+        attitudePitch:attitudePitch,
+        attitudeRoll:attitudeRoll,
+        attitudeYaw:attitudeYaw,
+        gravAccelX:gravAccelX,
+        gravAccelY:gravAccelY,
+        gravAccelZ:gravAccelZ,
+        accelX:accelX,
+        accelY:accelY,
+        accelZ:accelZ,
+        rotationX:rotationX,
+        rotationY:rotationY,
+        rotationZ:rotationZ
     )
 //    let year = 2022
 //    let month = Int.random(in: 1...12)

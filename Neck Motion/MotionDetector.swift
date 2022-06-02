@@ -6,7 +6,7 @@ import CoreMotion
 import UIKit
 
 class MotionDetector: ObservableObject {
-    private let motionManager = CMMotionManager()
+    let motionManager = CMMotionManager()
 
     private var timer = Timer()
     private var updateInterval: TimeInterval
@@ -15,7 +15,7 @@ class MotionDetector: ObservableObject {
     @Published var roll: Double = 0
     @Published var zAcceleration: Double = 0
 
-    var onUpdate: (() -> Void) = {}
+    var onUpdate: ((CMDeviceMotion) -> Void) = {_ in }
     
     private var currentOrientation: UIDeviceOrientation = .landscapeLeft
     private var orientationObserver: NSObjectProtocol? = nil
@@ -53,7 +53,7 @@ class MotionDetector: ObservableObject {
             (roll, pitch) = currentOrientation.adjustedRollAndPitch(data.attitude)
             zAcceleration = data.userAcceleration.z
 
-            onUpdate()
+            onUpdate(data)
         }
     }
 

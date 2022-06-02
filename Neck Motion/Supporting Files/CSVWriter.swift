@@ -1,5 +1,6 @@
 import Foundation
 import CoreMotion
+import UIKit
 
 extension Date {
     func currentTimeMillis() -> Int64 {
@@ -45,6 +46,69 @@ class CSVWriter {
                 """
         text = text.trimmingCharacters(in: .newlines) + "\n"
         file.write(text.data(using: .utf8)!)
+    }
+    
+    func writeMotionData(motion: MotionData) {
+        for i in 0..<motion.timestamps.count {
+            writeLine(motion: motion, index: i)
+        }
+    }
+    
+    func writeLine(motion: MotionData, index: Int) {
+        guard let file = self.file else { return }
+        var text = """
+                \(motion.timestamps[index]),\
+                \(motion.quaternionX[index]),\
+                \(motion.quaternionY[index]),\
+                \(motion.quaternionZ[index]),\
+                \(motion.quaternionW[index]),\
+                \(motion.attitudePitch[index]),\
+                \(motion.attitudeRoll[index]),\
+                \(motion.attitudeYaw[index]),\
+                \(motion.gravAccelX[index]),\
+                \(motion.gravAccelY[index]),\
+                \(motion.gravAccelZ[index]),\
+                \(motion.accelX[index]),\
+                \(motion.accelY[index]),\
+                \(motion.accelZ[index]),\
+                \(motion.rotationX[index]),\
+                \(motion.rotationY[index]),\
+                \(motion.rotationZ[index])
+                """
+        text = text.trimmingCharacters(in: .newlines) + "\n"
+        print(text)
+        file.write(text.data(using: .utf8)!)
+    }
+    
+    func writeSession(session: Session) {
+        print("Writing session with ", session.motion.timestamps.count, " datapoints")
+        let dir = FileManager.default.urls(
+          for: .documentDirectory,
+          in: .userDomainMask
+        ).first!
+        
+        let now = session.date
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMdd_HHmmss"
+        
+        let filename = formatter.string(from: now) + "_" + session.type + "_motion.csv"
+        
+        let fileUrl = dir.appendingPathComponent(filename)
+        open(fileUrl)
+        writeMotionData(motion: session.motion)
+        
+        
+        func getDocumentsDirectory() -> URL {
+            let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+            let documentsDirectory = paths[0]
+            return documentsDirectory
+        }
+        
+        let path = getDocumentsDirectory().absoluteString.replacingOccurrences(of: "file://", with: "shareddocuments://")
+        let url = URL(string: path)!
+        UIApplication.shared.open(url)
+        
+        close()
     }
     
     func close() {

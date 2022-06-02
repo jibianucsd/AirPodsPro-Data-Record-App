@@ -95,15 +95,34 @@ struct RecordSessionView: View {
             }
             .navigationTitle("New Session")
             .onAppear {
-                detector.onUpdate = {
+                detector.onUpdate = { motion in
                     displayData.append(-detector.pitch)
                     if displayData.count > maxData {
                         displayData = Array(displayData.dropFirst())
                     }
                     
-                    session.motion.pitch.append(-detector.pitch)
-                    session.motion.roll.append(detector.roll)
-                    session.motion.yaw.append(detector.zAcceleration)
+                    session.motion.timestamps.append(Date().currentTimeMillis())
+                    
+                    session.motion.quaternionX.append(motion.attitude.quaternion.x)
+                    session.motion.quaternionY.append(motion.attitude.quaternion.y)
+                    session.motion.quaternionZ.append(motion.attitude.quaternion.z)
+                    session.motion.quaternionW.append(motion.attitude.quaternion.w)
+                    
+                    session.motion.attitudePitch.append(motion.attitude.pitch)
+                    session.motion.attitudeRoll.append(motion.attitude.roll)
+                    session.motion.attitudeYaw.append(motion.attitude.yaw)
+                    
+                    session.motion.gravAccelX.append(motion.gravity.x)
+                    session.motion.gravAccelY.append(motion.gravity.y)
+                    session.motion.gravAccelZ.append(motion.gravity.z)
+                    
+                    session.motion.accelX.append(motion.userAcceleration.x)
+                    session.motion.accelY.append(motion.userAcceleration.y)
+                    session.motion.accelZ.append(motion.userAcceleration.z)
+                    
+                    session.motion.rotationX.append(motion.rotationRate.x)
+                    session.motion.rotationY.append(motion.rotationRate.y)
+                    session.motion.rotationZ.append(motion.rotationRate.z)
                 }
             }
         }
