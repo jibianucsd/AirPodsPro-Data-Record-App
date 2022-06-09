@@ -81,21 +81,31 @@ class CSVWriter {
     }
     
     func writeSession(session: Session) {
-        print("Writing session with ", session.motion.timestamps.count, " datapoints")
         let dir = FileManager.default.urls(
           for: .documentDirectory,
           in: .userDomainMask
         ).first!
         
-        let now = session.date
+        let date = session.date
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyyMMdd_HHmmss"
         
-        let filename = formatter.string(from: now) + "_" + session.type + "_motion.csv"
+        let filename = formatter.string(from: date) + "_" + session.type + "_iPhone_" + "_motion.csv"
+        writeDeviceData(session: session, filename: filename, dir: dir)
+        
+        if session.airpodsMotion.timestamps.count > 0 {
+            let airpodsFilename = formatter.string(from: date) + "_" + session.type + "_Airpods_" + "_motion.csv"
+            writeDeviceData(session: session, filename: airpodsFilename, dir: dir, airpods: true)
+        }
+    }
+    
+    private func writeDeviceData(session: Session, filename: String, dir: URL, airpods: Bool = false) {
+        let motion = airpods ? session.airpodsMotion : session.motion
+        print("Writing session with ", motion.timestamps.count, " datapoints, airpods: ", airpods)
         
         let fileUrl = dir.appendingPathComponent(filename)
         open(fileUrl)
-        writeMotionData(motion: session.motion)
+        writeMotionData(motion: motion)
         
         
         func getDocumentsDirectory() -> URL {

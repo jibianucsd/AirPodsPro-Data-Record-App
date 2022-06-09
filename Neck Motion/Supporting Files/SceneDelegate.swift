@@ -12,10 +12,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        window.rootViewController = UINavigationController(rootViewController: MainPage())
         
         @StateObject var detector = MotionDetector(updateInterval: 0.01)
+        @StateObject var airpodsDetector = AirpodsMotionDetector(updateInterval: 0.01)
         
         window.rootViewController = UIHostingController(rootView:
             MainAppView()
                 .environmentObject(detector)
+                .environmentObject(airpodsDetector)
                 .environmentObject(Model())
         )
         window.makeKeyAndVisible()

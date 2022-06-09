@@ -22,6 +22,15 @@ struct DetailView: View {
                     Text(session.date as Date, style: .time)
                         .font(.subheadline)
                     Spacer()
+                    
+                    ZStack {
+                        Image(systemName: "airpodspro")
+                            .font(.callout)
+                        Image(systemName: "circle.slash")
+                            .font(.title)
+                            .foregroundColor(.red)
+                            .opacity(session.airpodsMotion.timestamps.count > 0 ? 0 : 1)
+                    }
                 }
                 HStack {
                     

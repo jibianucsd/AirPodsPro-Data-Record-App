@@ -41,7 +41,8 @@ class Model: ObservableObject {
 struct Session: Codable, Identifiable {
     var id = UUID()
     var motion: MotionData = MotionData()
-//    var phoneMotion: [MotionPoint]   // Add phone motion vs airpods motion?
+    var airpodsMotion: MotionData = MotionData()
+    
     var date: Date = Date()
     var type: String = "Session"
 }
@@ -76,6 +77,19 @@ struct MotionData: Codable {
 
 // Helper function for generating random data
 func generateRandomSession() -> Session {
+    let data = generateRandomMotionData()
+    let airpodsData = generateRandomMotionData()
+    
+//    let year = 2022
+//    let month = Int.random(in: 1...12)
+//    let day = Int.random(in: 1...28)
+    let date = Date(timeIntervalSinceNow: TimeInterval(CGFloat.random(in: -10000.0...10000)))
+    
+    let out = Session(motion: data, airpodsMotion: airpodsData, date: date, type: "Surgery")
+    return out
+}
+
+func generateRandomMotionData() -> MotionData {
     let length = 100
     let minData = -5.0
     let maxData = 5.0
@@ -146,11 +160,6 @@ func generateRandomSession() -> Session {
         rotationY:rotationY,
         rotationZ:rotationZ
     )
-//    let year = 2022
-//    let month = Int.random(in: 1...12)
-//    let day = Int.random(in: 1...28)
-    let date = Date(timeIntervalSinceNow: TimeInterval(CGFloat.random(in: -10000.0...10000)))
     
-    let out = Session(motion: data, date: date, type: "Surgery")
-    return out
+    return data
 }

@@ -37,7 +37,7 @@ class MotionDetector: ObservableObject {
             }
         }
         
-        if motionManager.isDeviceMotionAvailable {
+        if motionManager.isDeviceMotionAvailable && !motionManager.isDeviceMotionActive {
             motionManager.startDeviceMotionUpdates()
             
             timer = Timer.scheduledTimer(withTimeInterval: updateInterval, repeats: true) { _ in
